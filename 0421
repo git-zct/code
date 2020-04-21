@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+//#include<stdlib.h>
+int main()
+{
+	char a[100];
+	gets(a);
+	int cnt=0,flag=0;
+	int book[100]={0};
+	int i,j;
+	int len=strlen(a);
+//	printf("%d",len);
+	for(i=0;i<len;++i){
+		for(j=0;j<len;++j){
+			if(book[j]==0&&a[j]==a[i]){
+				book[j]=1;
+				cnt+=1;
+			//	printf("%c",a[j]); 
+			}
+		}
+		if(cnt%2){
+			flag=1;
+			break;
+		}
+		cnt=0;
+	}
+	if(flag){
+		printf("No");
+	}else{
+		printf("Yes");
+	}
+}
