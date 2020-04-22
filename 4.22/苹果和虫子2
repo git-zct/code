@@ -1,0 +1,13 @@
+#include<stdio.h>
+int main()
+{
+	int sum,time,last;
+	scanf("%d %d %d",&sum,&time,&last);
+	do{
+		sum-=1;
+	}while((last-=time)>0);
+	if(sum>0)
+	printf("%d",sum);
+	else
+	printf("0");
+}
