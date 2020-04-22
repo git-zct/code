@@ -1,3 +1,4 @@
+//大数相乘
 #include<stdio.h>
 #include<stdlib.h>
 int main()
@@ -34,4 +35,5 @@ int main()
 		if(book[i]==1)
 			printf("%d",k[i]);
 	}
+
 }
