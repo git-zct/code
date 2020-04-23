@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#define true 1
+#define false 0 
+//#include<bool.h>
+int stack(char *s){
+	int len=strlen(s);
+	if(len==0)
+		return true;
+	char *cstack=(char *)malloc(sizeof(char));
+	int top=-1;
+	int i=0;
+	for(;i<len&&s[i]!='\0';++i){
+		if(top==-1){
+			top++;
+			cstack[top]=s[i];
+		}
+		else if ((cstack[top] == '('&&s[i] == ')') || (cstack[top] == '{'&&s[i] == '}') || (cstack[top] == '['&&s[i] == ']'))//如果栈顶元素与即将进栈的元素匹配，栈顶元素出栈，栈顶指针减1
+			top--;
+	}
+	if(top==-1)
+		return true;
+	else return false;
+}
+int main()
+{
+	char a[20];
+	scanf("%s",a);
+	int i;
+	if(stack(a)==1){
+		printf("yes");
+	}else{
+		printf("No");
+	}
+}
