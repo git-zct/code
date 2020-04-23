@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef int SElemType;
+
+typedef struct StackNode{
+	SElemType date;
+	struct StackNode *next;
+}StackNode,*LinkStackPtr;
+
+typedef struct LinkStack{
+	LinkStackPtr top;
+	int count;
+}LinkStack;
+
+int Push(LinkStack *S,SElemType e){
+	LinkStackPtr s=(LinkStackPtr)malloc(sizeof(StackNode));
+	s->date=e;
+	if(S->top){
+	s->next=S->top;
+	S->top=s;
+	S->count++;
+	return 1; 
+	}else{
+		S->top=s;
+		S->count++;
+	}
+}
+int Pop(LinkStack *S,SElemType *e){
+	LinkStackPtr p;
+//	if(StackEmpty(*S))
+//		return -1;
+	*e=S->top->date;
+	p=S->top;
+	S->top=S->top->next;
+	free(p);
+	S->count--;
+	return 1;
+}
+int main()
+{
+	LinkStack A;
+	A.count=0;
+	A.top=NULL;
+	int a;
+	do{
+	scanf("%d",&a);
+		if(a!=-1){
+			Push(&A,a);
+		}
+	}while(a!=-1);
+	int ret=0;
+	while(Pop(&A,&ret)!=-1)
+	printf("%d ",ret);
+}
