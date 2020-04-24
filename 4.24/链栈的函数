@@ -1,0 +1,86 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 100
+typedef int DateType;
+typedef struct node{
+	DateType date;
+	struct node *next;
+}Stack;
+Stack *CreatStack(){
+	Stack *stack=(Stack*)malloc(sizeof(Stack));
+	if(NULL!=stack){
+		stack->next=NULL;//***错在这里了 
+		return stack;
+	}
+	else printf("Out of stack");
+	return NULL;
+}
+int PushStack(Stack *stack,DateType date){
+	Stack *newst=(Stack*)malloc(sizeof(Stack));
+	if(newst!=NULL){
+		newst->date=date;
+		newst->next=stack->next;
+		stack->next=newst;
+		return 1;
+	} 
+	return 0;
+}
+int PopStack(Stack *stack){
+	Stack *tmpst;
+	if(!IsEmpty(stack)){
+		tmpst=stack->next;
+		stack->next=tmpst->next;
+		free(tmpst);
+		return 1;
+	}
+	return 0;
+}
+DateType GetTopElement(Stack *stack){
+	if(!IsEmpty(stack)){
+		return (stack->next->date);
+	}
+	return -1;
+}
+void DestoryStack(Stack *stack){
+	free(stack);
+}
+int IsEmpty(Stack *stack){
+	return (stack->next==NULL);
+}
+void StackEmpty(Stack *stack){
+	while(!IsEmpty(stack)){
+		PopStack(stack);
+	}
+	printf("Empyed");
+}
+int main()
+{
+    //测试创建栈函数
+    Stack* stack = CreatStack();
+    printf("StackTopElement =  %d \n",GetTopElement(stack));
+ 
+    //测试入栈函数
+    PushStack(stack,5); 
+    printf("StackTopElement =  %d \n",GetTopElement(stack));
+ 
+    PushStack(stack,6);
+    printf("StackTopElement =  %d \n",GetTopElement(stack));
+ 
+    PushStack(stack,7);
+    printf("StackTopElement =  %d \n",GetTopElement(stack));
+ 
+    //测试出栈函数
+    PopStack(stack);
+    printf("StackTopElement =  %d \n",GetTopElement(stack));
+    PopStack(stack);
+    printf("StackTopElement =  %d \n",GetTopElement(stack));
+ 
+    //测试清空栈函数
+    StackEmpty(stack);
+    printf("StackTopElement =  %d \n",GetTopElement(stack));
+ 
+    //测试撤销栈函数
+    DestoryStack(stack);
+ 
+    return 0;
+}
