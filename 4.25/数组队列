@@ -1,0 +1,52 @@
+```c
+#include<stdio.h>
+#define MAXSIZE 100 
+typedef int DateType;
+typedef struct {
+	DateType date[MAXSIZE];
+	int front;
+	int rear;
+} SqQueue;
+int InitQueue(SqQueue *Q){
+	Q->front=0;
+	Q->rear=0;
+	return 1;
+};
+int QueueLength(SqQueue Q){
+	return (Q.rear-Q.front+MAXSIZE)%MAXSIZE;
+}
+int EnQueue (SqQueue *Q,DateType e){
+	if((Q->rear+1)%MAXSIZE==Q->front){
+		return -1;
+	}
+	Q->date[Q->rear]=e;
+	Q->rear=(Q->rear+1)%MAXSIZE;
+	
+	return 1;
+}
+int DeQueue(SqQueue *Q,DateType *e){
+	if(Q->front==Q->rear)
+		return -1;
+	*e=Q->date[Q->front];
+	Q->front=(Q->front+1)%MAXSIZE;
+	
+	return 1;
+}
+int main()
+{
+	SqQueue Q;
+	InitQueue(&Q);
+	int a;
+	int k=0;
+	do{	
+	scanf("%d",&a);
+		if(a!=-1){
+			if((k=EnQueue(&Q,a))==1){;}
+			else {printf("满了");break;}
+		}
+	}while(a!=-1);
+	int ret;
+	while((k=DeQueue(&Q,&ret))!=-1) 
+		printf("%d ",ret);
+	
+}
