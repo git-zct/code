@@ -1,0 +1,12 @@
+//两个指针，先让一个到达倒数位，另一个开始走直到第一个到末尾
+struct ListNode* getKthFromEnd(struct ListNode* head, int k){
+    struct ListNode*p=head;
+    while(k--){
+        p=p->next;
+    }
+    while(p){
+        p=p->next;
+        head=head->next;
+    }
+    return head;
+}
