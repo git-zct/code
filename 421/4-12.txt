@@ -1,0 +1,30 @@
+//输入人数，围成一个圈，依次报数，报到3的倍数就退出，最后剩下是几号
+#include<stdio.h>
+#define N 50
+int main(void ){
+	int i,k,m,n,num[N];
+	scanf("%d",&n);
+	for(i=0;i<n;++i){
+		num[i]=i+1;
+	}
+	i=0;k=0;m=0;  
+	while(m<n-1){             
+		if(num[i]!=0){
+			k++;
+			if(k==3){        
+				num[i]=0;
+				k=0;          
+				m++;
+			}
+	
+		}	
+		i++;                  
+		if(i==n) i=0;         
+		
+	}
+	i=0;			     
+	while(num[i]==0){   
+			i++;
+	}
+	printf("留下的%d",num[i]);
+}
