@@ -1,0 +1,15 @@
+int maxArea(int* height, int heightSize){
+   int i=0,j=heightSize-1,s=0;
+   while(i<j){
+       if(height[i]<height[j]){
+           if(s<height[i]*(j-i))
+             s=height[i]*(j-i);
+           i++;
+       }else{
+           if(s<height[j]*(j-i))
+               s=height[j]*(j-i);
+           j--;
+       }
+   }
+    return s;
+}
