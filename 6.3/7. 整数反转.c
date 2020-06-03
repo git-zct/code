@@ -5,7 +5,9 @@ int reverse(int x){
     int flag=0;
     long temp=0;
   if(x<0){
-      if(x==-2147483648)
+      if(x==-2147483648){
+          return 0;
+      }
       x=-x;
       flag=1;
   }
@@ -18,7 +20,7 @@ int reverse(int x){
         return 0;
     }
     if(flag){
-        return -(int)temp;
+        return -1*(int)temp;
     }else{
         return (int)temp;
     }
